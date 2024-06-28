@@ -419,15 +419,18 @@ console.log(searchByTitle("Avenger", movies));
 */
 console.log("---Esercizio 18-----");
 
-function searchAndDivide (keywordString) {
-  return movies.reduce((result, movie) => {
-    if (movie.Title.includes(keywordString)) {
-      result.match.push(movie);
-    } else {
-      result.unmatch.push(movie);
-    }
-    return result;
-  },{ match: [], unmatch: []});
+function searchAndDivide(keywordString) {
+  return movies.reduce(
+    (result, movie) => {
+      if (movie.Title.includes(keywordString)) {
+        result.match.push(movie);
+      } else {
+        result.unmatch.push(movie);
+      }
+      return result;
+    },
+    { match: [], unmatch: [] }
+  );
 }
 let search = searchAndDivide("Lord");
 console.log(search);
@@ -447,53 +450,78 @@ console.log(newMovies);
   Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
 */
 console.log("---Esercizio 20-----");
-function pointContainer () {
-  return document.getElementById('container');
+function pointContainer() {
+  return document.getElementById("container");
 }
-pointContainer()
+pointContainer();
 console.log(pointContainer());
 /* ESERCIZIO 21
   Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
 */
 console.log("---Esercizio 21-----");
 function pointTd() {
-  return document.querySelectorAll('tr td');
+  return document.querySelectorAll("td");
 }
-pointTd()
+pointTd();
 console.log(pointTd());
 /* ESERCIZIO 22
   Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
 */
 console.log("---Esercizio 22-----");
-function printTextInTableCells() {
-  const tdElements = document.querySelectorAll('td');
-  for (let i = 0; i < tdElements.length; i++) {
-    const e = tdElements[i];
-    console.log(e.innerText);
-  }
-  
-}
-printTextInTableCells('sono una cella della tabella');
 
-
+const prinTextTd = () => {
+  const tdElements = document.querySelectorAll("td");
+  tdElements.forEach((e) =>
+    console.log((e.innerText = "Sono una cella della tabella"))
+  );
+};
+prinTextTd("");
 // Chiamata alla funzione per stampare il testo in tutte le celle di tabella
-printTextInTableCells();
+
 /* ESERCIZIO 23
   Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
 */
 console.log("---Esercizio 23-----");
+function backgroundColorLink() {
+  const links = document.querySelectorAll("a");
+  links.forEach((link) => {
+    link.style.backgroundColor = "red";
+  });
+}
+
+backgroundColorLink();
 /* ESERCIZIO 24
   Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
 */
 console.log("---Esercizio 24-----");
+function addNewItemToList(text) {
+  const list = document.getElementById("myList");
+  const newItem = document.createElement("li");
+  newItem.innerText = text;
+  list.appendChild(newItem);
+}
+addNewItemToList("Nuovo elemento 1");
+addNewItemToList("Nuovo elemento 2");
 /* ESERCIZIO 25
   Scrivi una funzione per svuotare la lista non ordinata con id "myList".
 */
 console.log("---Esercizio 25-----");
+function clearList() {
+  const list = document.getElementById("myList");
+  list.innerHTML = "";
+}
+clearList();
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
 */
 console.log("---Esercizio 26-----");
+function addClassToTableRow() {
+  const rows = document.getElementsByTagName("tr");
+  for (let i = 0; i < rows.length; i++) {
+    rows[i].classList.add("test");
+  }
+}
+addClassToTableRow();
 // [EXTRA] JS Avanzato
 
 /* ESERCIZIO 27
