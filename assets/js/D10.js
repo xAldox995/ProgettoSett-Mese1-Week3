@@ -410,32 +410,74 @@ console.log(sumAllTheYears(movies));
 console.log("---Esercizio 17-----");
 
 const searchByTitle = (titleString, movies) => {
-  return movies.filter(movie => movie.Title.includes(titleString));
-}
-console.log(searchByTitle('Avenger', movies));
+  return movies.filter((movie) => movie.Title.includes(titleString));
+};
+console.log(searchByTitle("Avenger", movies));
 /* ESERCIZIO 18
   Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
   "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
 */
 console.log("---Esercizio 18-----");
+
+function searchAndDivide (keywordString) {
+  return movies.reduce((result, movie) => {
+    if (movie.Title.includes(keywordString)) {
+      result.match.push(movie);
+    } else {
+      result.unmatch.push(movie);
+    }
+    return result;
+  },{ match: [], unmatch: []});
+}
+let search = searchAndDivide("Lord");
+console.log(search);
 /* ESERCIZIO 19
   Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
 */
 console.log("---Esercizio 19-----");
+
+const removeIndex = (index, movies) => {
+  return movies.filter((movie, idx) => idx !== index);
+};
+let newMovies = removeIndex(2, movies);
+console.log(newMovies);
 // DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
 
 /* ESERCIZIO 20
   Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
 */
 console.log("---Esercizio 20-----");
+function pointContainer () {
+  return document.getElementById('container');
+}
+pointContainer()
+console.log(pointContainer());
 /* ESERCIZIO 21
   Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
 */
 console.log("---Esercizio 21-----");
+function pointTd() {
+  return document.querySelectorAll('tr td');
+}
+pointTd()
+console.log(pointTd());
 /* ESERCIZIO 22
   Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
 */
 console.log("---Esercizio 22-----");
+function printTextInTableCells() {
+  const tdElements = document.querySelectorAll('td');
+  for (let i = 0; i < tdElements.length; i++) {
+    const e = tdElements[i];
+    console.log(e.innerText);
+  }
+  
+}
+printTextInTableCells('sono una cella della tabella');
+
+
+// Chiamata alla funzione per stampare il testo in tutte le celle di tabella
+printTextInTableCells();
 /* ESERCIZIO 23
   Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
 */
